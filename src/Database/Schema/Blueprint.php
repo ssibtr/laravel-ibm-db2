@@ -33,9 +33,9 @@ class Blueprint extends \Illuminate\Database\Schema\Blueprint
      * Set the sequence number of reply list entries.
      *
      * @param int $replyListSequenceNumber
-     * @return void
+     * @return int
      */
-    public function setReplyListSequenceNumber(int $replyListSequenceNumber)
+    public function setReplyListSequenceNumber(int $replyListSequenceNumber): int
     {
         return $this->replyListSequenceNumber = $replyListSequenceNumber;
     }
@@ -99,7 +99,7 @@ class Blueprint extends \Illuminate\Database\Schema\Blueprint
      *
      * @param  string $type
      * @param  string|array $columns
-     * @param  string $index
+     * @param  string|null $index
      *
      * @return \Illuminate\Support\Fluent
      */
@@ -166,9 +166,8 @@ class Blueprint extends \Illuminate\Database\Schema\Blueprint
         return $this->addColumn('numeric', $column, compact('total', 'places'));
     }
 
-    public function synchro($index, $masterizable = false)
+    public function synchro(?string $index, bool $masterizable = false): void
     {
-
         $this->string('id_sync', 20)
              ->index($index);
         $this->string('hashcode', 32);
@@ -180,9 +179,9 @@ class Blueprint extends \Illuminate\Database\Schema\Blueprint
     }
 
     /**
-     * @param string $index
+     * @param string|array $index
      */
-    public function dropSynchro($index)
+    public function dropSynchro($index): void
     {
         $this->dropColumn('id_sync', 'hashcode');
         $this->dropIndex($index);

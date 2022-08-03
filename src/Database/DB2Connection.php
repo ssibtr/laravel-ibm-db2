@@ -2,14 +2,14 @@
 
 namespace GuidoFaecke\DB2\Database;
 
-use PDO;
-use Illuminate\Database\Connection;
-use GuidoFaecke\DB2\Database\Schema\Builder;
+use GuidoFaecke\DB2\Database\Query\Grammars\DB2Grammar as QueryGrammar;
 use GuidoFaecke\DB2\Database\Query\Processors\DB2Processor;
 use GuidoFaecke\DB2\Database\Query\Processors\DB2ZOSProcessor;
-use GuidoFaecke\DB2\Database\Query\Grammars\DB2Grammar as QueryGrammar;
-use GuidoFaecke\DB2\Database\Schema\Grammars\DB2Grammar as SchemaGrammar;
+use GuidoFaecke\DB2\Database\Schema\Builder;
 use GuidoFaecke\DB2\Database\Schema\Grammars\DB2ExpressCGrammar;
+use GuidoFaecke\DB2\Database\Schema\Grammars\DB2Grammar as SchemaGrammar;
+use Illuminate\Database\Connection;
+use PDO;
 
 /**
  * Class DB2Connection

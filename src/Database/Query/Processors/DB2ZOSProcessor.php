@@ -2,9 +2,9 @@
 
 namespace GuidoFaecke\DB2\Database\Query\Processors;
 
+use GuidoFaecke\DB2\Database\Query\Grammars\DB2Grammar;
 use Illuminate\Database\Query\Builder;
 use Illuminate\Database\Query\Processors\Processor;
-use GuidoFaecke\DB2\Database\Query\Grammars\DB2Grammar;
 
 /**
  * Class DB2ZOSProcessor
@@ -16,12 +16,12 @@ class DB2ZOSProcessor extends Processor
     /**
      * Process an "insert get ID" query.
      *
-     * @param  \Illuminate\Database\Query\Builder $query
-     * @param  string                             $sql
-     * @param  array                              $values
-     * @param  string                             $sequence
+     * @param Builder      $query
+     * @param string       $sql
+     * @param array        $values
+     * @param string|array $sequence
      *
-     * @return int/array
+     * @return int|array
      */
     public function processInsertGetId(Builder $query, $sql, $values, $sequence = null)
     {
@@ -32,7 +32,7 @@ class DB2ZOSProcessor extends Processor
             $sequenceStr = $grammar->columnize($sequence);
         }
 
-        $sqlStr = 'select %s from final table (%s)';
+        $sqlStr = "select %s from final table (%s)";
 
         $finalSql = sprintf($sqlStr, $sequenceStr, $sql);
         $results = $query->getConnection()
@@ -40,11 +40,11 @@ class DB2ZOSProcessor extends Processor
 
         if (is_array($sequence)) {
             return array_values((array) $results[0]);
-        } else {
-            $result = (array) $results[0];
-            $id = $result[strtolower($sequenceStr)];
-
-            return is_numeric($id) ? (int) $id : $id;
         }
+
+        $result = (array) $results[0];
+        $id = $result[strtolower($sequenceStr)];
+
+        return is_numeric($id) ? (int) $id : $id;
     }
 }

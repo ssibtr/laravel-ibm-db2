@@ -2,15 +2,15 @@
 
 namespace GuidoFaecke\DB2;
 
-use Illuminate\Foundation\Application as LaravelApplication;
-use Laravel\Lumen\Application as LumenApplication;
-use GuidoFaecke\DB2\Database\DB2Connection;
-use GuidoFaecke\DB2\Database\Connectors\ODBCConnector;
 use GuidoFaecke\DB2\Database\Connectors\IBMConnector;
+use GuidoFaecke\DB2\Database\Connectors\ODBCConnector;
 use GuidoFaecke\DB2\Database\Connectors\ODBCZOSConnector;
+use GuidoFaecke\DB2\Database\DB2Connection;
 use GuidoFaecke\DB2\Queue\DB2Connector;
+use Illuminate\Foundation\Application as LaravelApplication;
 use Illuminate\Queue\QueueManager;
 use Illuminate\Support\ServiceProvider;
+use Laravel\Lumen\Application as LumenApplication;
 
 /**
  * Class DB2ServiceProvider
@@ -66,7 +66,7 @@ class DB2ServiceProvider extends ServiceProvider
             }
 
             // Create a connector
-            $this->app['db']->extend($conn, function ($config, $name) {
+            $this->app['db']->extend($conn, function (array $config, string $name) {
                 $config['name'] = $name;
                 switch ($config['driver']) {
                     case 'db2_expressc_odbc':

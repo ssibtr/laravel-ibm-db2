@@ -66,7 +66,7 @@ class Builder extends \Illuminate\Database\Schema\Builder
         $res = $this->connection->getPostProcessor()
                                 ->processColumnListing($results);
 
-        return array_values(array_map(function ($r) {
+        return array_values(array_map(static function ($r): string {
             return $r->column_name;
         }, $res));
     }

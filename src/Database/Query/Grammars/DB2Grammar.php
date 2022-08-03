@@ -2,8 +2,8 @@
 
 namespace GuidoFaecke\DB2\Database\Query\Grammars;
 
-use Illuminate\Database\Query\Grammars\Grammar;
 use Illuminate\Database\Query\Builder;
+use Illuminate\Database\Query\Grammars\Grammar;
 
 /**
  * Class DB2Grammar
@@ -32,7 +32,7 @@ class DB2Grammar extends Grammar
      *
      * @return string
      */
-    protected function wrapValue($value)
+    protected function wrapValue(string $value): string
     {
         if ($value === '*') {
             return $value;
@@ -49,7 +49,7 @@ class DB2Grammar extends Grammar
      *
      * @return string
      */
-    protected function compileLimit(Builder $query, $limit)
+    protected function compileLimit(Builder $query, int $limit): string
     {
         if ($this->offsetCompatibilityMode) {
             return "FETCH FIRST $limit ROWS ONLY";
@@ -64,7 +64,7 @@ class DB2Grammar extends Grammar
      *
      * @return string
      */
-    public function compileSelect(Builder $query)
+    public function compileSelect(Builder $query): string
     {
         if (! $this->offsetCompatibilityMode) {
             return parent::compileSelect($query);
@@ -94,12 +94,12 @@ class DB2Grammar extends Grammar
      *
      * @return string
      */
-    protected function compileAnsiOffset(Builder $query, $components)
+    protected function compileAnsiOffset(Builder $query, array $components): string
     {
         // An ORDER BY clause is required to make this offset query work, so if one does
         // not exist we'll just create a dummy clause to trick the database and so it
         // does not complain about the queries for not having an "order by" clause.
-        if (!isset($components['orders'])) {
+        if (! isset($components['orders'])) {
             $components['orders'] = 'order by 1';
         }
 
@@ -110,9 +110,9 @@ class DB2Grammar extends Grammar
         // the "select" that will give back the row numbers on each of the records.
         $orderings = $components['orders'];
 
-        $columns = (!empty($components['columns']) ? $components['columns'] . ', ' : 'select');
+        $columns = (! empty($components['columns']) ? $components['columns'] . ', ' : 'select');
 
-        if ($columns == 'select *, ' && $query->from) {
+        if ($columns === 'select *, ' && $query->from) {
             $columns = 'select ' . $this->tablePrefix . $query->from . '.*, ';
         }
 
@@ -150,7 +150,7 @@ class DB2Grammar extends Grammar
      *
      * @return string
      */
-    protected function compileOver($orderings, $columns)
+    protected function compileOver(string $orderings, $columns): string
     {
         return "{$columns} row_number() over ({$orderings}) as row_num";
     }
@@ -160,7 +160,7 @@ class DB2Grammar extends Grammar
      *
      * @return string
      */
-    protected function compileRowConstraint($query)
+    protected function compileRowConstraint($query): string
     {
         $start = $query->offset + 1;
 
@@ -181,7 +181,7 @@ class DB2Grammar extends Grammar
      *
      * @return string
      */
-    protected function compileTableExpression($sql, $constraint)
+    protected function compileTableExpression(string $sql, string $constraint): string
     {
         return "select * from ({$sql}) as temp_table where row_num {$constraint}";
     }
@@ -194,7 +194,7 @@ class DB2Grammar extends Grammar
      *
      * @return string
      */
-    protected function compileOffset(Builder $query, $offset)
+    protected function compileOffset(Builder $query, int $offset): string
     {
         if ($this->offsetCompatibilityMode) {
             return '';
@@ -208,7 +208,7 @@ class DB2Grammar extends Grammar
      * @param  \Illuminate\Database\Query\Builder  $query
      * @return string
      */
-    public function compileExists(Builder $query)
+    public function compileExists(Builder $query): string
     {
         $existsQuery = clone $query;
 
@@ -222,7 +222,7 @@ class DB2Grammar extends Grammar
      *
      * @return string
      */
-    public function getDateFormat()
+    public function getDateFormat(): string
     {
         return $this->dateFormat ?? parent::getDateFormat();
     }
@@ -232,7 +232,7 @@ class DB2Grammar extends Grammar
      *
      * @param $dateFormat
      */
-    public function setDateFormat($dateFormat)
+    public function setDateFormat($dateFormat): void
     {
         $this->dateFormat = $dateFormat;
     }
@@ -242,7 +242,7 @@ class DB2Grammar extends Grammar
      *
      * @param $bool
      */
-    public function setOffsetCompatibilityMode($bool)
+    public function setOffsetCompatibilityMode($bool): void
     {
         $this->offsetCompatibilityMode = $bool;
     }
@@ -250,10 +250,11 @@ class DB2Grammar extends Grammar
     /**
      * Compile the SQL statement to define a savepoint.
      *
-     * @param  string  $name
+     * @param string $name
+     *
      * @return string
      */
-    public function compileSavepoint($name)
+    public function compileSavepoint($name): string
     {
         return 'SAVEPOINT ' . $name . ' ON ROLLBACK RETAIN CURSORS';
     }

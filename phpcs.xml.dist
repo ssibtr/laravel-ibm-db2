@@ -14,6 +14,24 @@
     <!-- Paths to check -->
     <file>src</file>
 
+    <config name="installed_paths" value="../../slevomat/coding-standard"/>
+
     <!-- Include all rules from the PSR-12 Coding Standard -->
     <rule ref="PSR12"/>
+
+    <!-- Require use statements to be alphabetically sorted -->
+    <rule ref="SlevomatCodingStandard.Namespaces.AlphabeticallySortedUses"/>
+    <!-- Forbid superfluous whitespaces -->
+    <rule ref="Squiz.WhiteSpace.SuperfluousWhitespace.EmptyLines">
+        <!-- turned off by PSR2 -> turning back on -->
+        <severity>5</severity>
+    </rule>
+    <!-- Forbid spaces around `->` operator -->
+    <rule ref="Squiz.WhiteSpace.ObjectOperatorSpacing">
+        <properties>
+            <property name="ignoreNewlines" value="true"/>
+        </properties>
+    </rule>
+    <!-- Forbid blank line after function opening brace -->
+    <rule ref="Squiz.WhiteSpace.FunctionOpeningBraceSpace"/>
 </ruleset>

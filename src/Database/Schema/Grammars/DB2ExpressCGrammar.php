@@ -9,7 +9,7 @@ class DB2ExpressCGrammar extends DB2Grammar
      *
      * @return string
      */
-    public function compileTableExists()
+    public function compileTableExists(): string
     {
         return 'select * from syspublic.all_tables where table_schema = upper(?) and table_name = upper(?)';
     }
@@ -19,7 +19,7 @@ class DB2ExpressCGrammar extends DB2Grammar
      *
      * @return string
      */
-    public function compileColumnExists()
+    public function compileColumnExists(): string
     {
         return 'select column_name
                 from syspublic.all_ind_columns
