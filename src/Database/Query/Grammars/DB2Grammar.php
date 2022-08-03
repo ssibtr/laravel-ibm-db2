@@ -51,7 +51,7 @@ class DB2Grammar extends Grammar
      */
     protected function compileLimit(Builder $query, $limit)
     {
-        if($this->offsetCompatibilityMode){
+        if ($this->offsetCompatibilityMode) {
             return "FETCH FIRST $limit ROWS ONLY";
         }
         return parent::compileLimit($query, $limit);
@@ -66,7 +66,7 @@ class DB2Grammar extends Grammar
      */
     public function compileSelect(Builder $query)
     {
-        if(!$this->offsetCompatibilityMode){
+        if (! $this->offsetCompatibilityMode) {
             return parent::compileSelect($query);
         }
 
@@ -120,7 +120,7 @@ class DB2Grammar extends Grammar
 
         // if there are bindings in the order, we need to move them to the select since we are moving the parameter
         // markers there with the OVER statement
-        if(isset($query->getRawBindings()['order'])){
+        if (isset($query->getRawBindings()['order'])) {
             $query->addBinding($query->getRawBindings()['order'], 'select');
             $query->setBindings([], 'order');
         }
@@ -196,7 +196,7 @@ class DB2Grammar extends Grammar
      */
     protected function compileOffset(Builder $query, $offset)
     {
-        if($this->offsetCompatibilityMode){
+        if ($this->offsetCompatibilityMode) {
             return '';
         }
         return parent::compileOffset($query, $offset);
@@ -255,6 +255,6 @@ class DB2Grammar extends Grammar
      */
     public function compileSavepoint($name)
     {
-        return 'SAVEPOINT '.$name.' ON ROLLBACK RETAIN CURSORS';
+        return 'SAVEPOINT ' . $name . ' ON ROLLBACK RETAIN CURSORS';
     }
 }

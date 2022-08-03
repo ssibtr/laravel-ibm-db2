@@ -53,7 +53,9 @@ class DB2ServiceProvider extends ServiceProvider
         // Extend the connections with pdo_odbc and pdo_ibm drivers
         foreach (config('database.connections') as $conn => $config) {
             // Only use configurations that feature a "odbc", "ibm" or "odbczos" driver
-            if (!isset($config['driver']) || !in_array($config['driver'], [
+            if (
+                ! isset($config['driver'])
+                || ! in_array($config['driver'], [
                     'db2_ibmi_odbc',
                     'db2_ibmi_ibm',
                     'db2_zos_odbc',
@@ -64,7 +66,7 @@ class DB2ServiceProvider extends ServiceProvider
             }
 
             // Create a connector
-            $this->app['db']->extend($conn, function($config, $name) {
+            $this->app['db']->extend($conn, function ($config, $name) {
                 $config['name'] = $name;
                 switch ($config['driver']) {
                     case 'db2_expressc_odbc':

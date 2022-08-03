@@ -3,9 +3,7 @@
 namespace GuidoFaecke\DB2\Database;
 
 use PDO;
-
 use Illuminate\Database\Connection;
-
 use GuidoFaecke\DB2\Database\Schema\Builder;
 use GuidoFaecke\DB2\Database\Query\Processors\DB2Processor;
 use GuidoFaecke\DB2\Database\Query\Processors\DB2ZOSProcessor;
@@ -102,7 +100,7 @@ class DB2Connection extends Connection
      */
     protected function getDefaultQueryGrammar()
     {
-        $defaultGrammar = new QueryGrammar;
+        $defaultGrammar = new QueryGrammar();
 
         if (array_key_exists('date_format', $this->config)) {
             $defaultGrammar->setDateFormat($this->config['date_format']);
@@ -124,10 +122,10 @@ class DB2Connection extends Connection
     {
         switch ($this->config['driver']) {
             case 'db2_expressc_odbc':
-                $defaultGrammar = $this->withTablePrefix(new DB2ExpressCGrammar);
+                $defaultGrammar = $this->withTablePrefix(new DB2ExpressCGrammar());
                 break;
             default:
-                $defaultGrammar = $this->withTablePrefix(new SchemaGrammar);
+                $defaultGrammar = $this->withTablePrefix(new SchemaGrammar());
                 break;
         }
 
@@ -143,10 +141,10 @@ class DB2Connection extends Connection
     {
         switch ($this->config['driver']) {
             case 'db2_zos_odbc':
-                $defaultProcessor = new DB2ZOSProcessor;
+                $defaultProcessor = new DB2ZOSProcessor();
                 break;
             default:
-                $defaultProcessor = new DB2Processor;
+                $defaultProcessor = new DB2Processor();
                 break;
         }
 

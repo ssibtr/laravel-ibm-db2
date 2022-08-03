@@ -6,7 +6,6 @@ use Illuminate\Queue\DatabaseQueue;
 
 class DB2Queue extends DatabaseQueue
 {
-
     /**
      * {@inheritdoc}
      */
@@ -14,5 +13,4 @@ class DB2Queue extends DatabaseQueue
     {
         return true;
     }
-
 }

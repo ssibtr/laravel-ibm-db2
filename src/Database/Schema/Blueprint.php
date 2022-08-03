@@ -12,7 +12,6 @@ use Illuminate\Database\Schema\Grammars\Grammar;
  */
 class Blueprint extends \Illuminate\Database\Schema\Blueprint
 {
-
    /**
      * The sequence number of reply list entries.
      *
@@ -64,7 +63,11 @@ class Blueprint extends \Illuminate\Database\Schema\Blueprint
     protected function addReplyListEntryCommands(Connection $connection)
     {
         if ($this->commandsNamed(['dropColumn', 'renameColumn'])->count() > 0) {
-            array_unshift($this->commands, $this->createCommand('addReplyListEntry'), $this->createCommand('changeJob'));
+            array_unshift(
+                $this->commands,
+                $this->createCommand('addReplyListEntry'),
+                $this->createCommand('changeJob')
+            );
             array_push($this->commands, $this->createCommand('removeReplyListEntry'));
         }
     }

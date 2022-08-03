@@ -21,6 +21,8 @@ class DB2ExpressCGrammar extends DB2Grammar
      */
     public function compileColumnExists()
     {
-        return 'select column_name from syspublic.all_ind_columns where table_schema = upper(?) and table_name = upper(?)';
+        return 'select column_name
+                from syspublic.all_ind_columns
+                where table_schema = upper(?) and table_name = upper(?)';
     }
 }

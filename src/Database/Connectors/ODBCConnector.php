@@ -34,7 +34,7 @@ class ODBCConnector extends DB2Connector
 
         if (array_key_exists('odbc_keywords', $config)) {
             $odbcKeywords = $config['odbc_keywords'];
-            $parts = array_map(function($part) {
+            $parts = array_map(function ($part) {
                 return $part . '=%s';
             }, array_keys($odbcKeywords));
             $config = array_values($odbcKeywords);
