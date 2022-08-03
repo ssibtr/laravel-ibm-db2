@@ -139,7 +139,7 @@ class Blueprint extends \Illuminate\Database\Schema\Blueprint
     public function boolean($column)
     {
         $prefix = $this->table;
-        // Aucune utilité d'avoir le nom du schéma dans le préfixe de la contrainte check pour le type booléen
+        // No use having the schema name in the prefix of the check constraint for the boolean type
         $schemaTable = explode(".", $this->table);
 
         if (count($schemaTable) > 1) {

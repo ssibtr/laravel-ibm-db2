@@ -217,7 +217,7 @@ class DB2Grammar extends Grammar
         $columns = $this->columnize($command->columns);
         $onColumns = $this->columnize((array) $command->references);
 
-        // Aucune utilité d'avoir le nom du schéma dans le nom de la contrainte Foreign
+        // No use having the schema name in the Foreign constraint name
         $schemaTable = explode(".", $table);
 
         if (count($schemaTable) > 1) {
@@ -254,7 +254,7 @@ class DB2Grammar extends Grammar
         $table = $this->wrapTable($blueprint);
         $columns = $this->columnize($command->columns);
 
-        // Aucune utilité d'avoir le nom du schéma dans le nom de la contrainte Unique
+        // No use having the schema name in the Unique constraint name
         $schemaTable = explode(".", $table);
 
         if (count($schemaTable) > 1) {
@@ -277,7 +277,7 @@ class DB2Grammar extends Grammar
         $table = $this->wrapTable($blueprint);
         $columns = $this->columnize($command->columns);
 
-        // Aucune utilité d'avoir le nom du schéma dans le nom de la contrainte Index
+        // No use having the schema name in the Index constraint name
         $schemaTable = explode(".", $table);
 
         if (count($schemaTable) > 1) {
@@ -363,7 +363,7 @@ class DB2Grammar extends Grammar
     {
         $table = $this->wrapTable($blueprint);
 
-        // Aucune utilité d'avoir le nom du schéma dans le nom de la contrainte Unique
+        // No use having the schema name in the Unique constraint name
         $schemaTable = explode(".", $table);
 
         if (count($schemaTable) > 1) {
@@ -385,7 +385,7 @@ class DB2Grammar extends Grammar
     {
         $table = $this->wrapTable($blueprint);
 
-        // Aucune utilité d'avoir le nom du schéma dans le nom de la contrainte Index
+        // No use having the schema name in the Index constraint name
         $schemaTable = explode(".", $table);
 
         if (count($schemaTable) > 1) {
@@ -407,7 +407,7 @@ class DB2Grammar extends Grammar
     {
         $table = $this->wrapTable($blueprint);
 
-        // Aucune utilité d'avoir le nom du schéma dans le nom de la contrainte Foreign
+        // No use having the schema name in the Foreign constraint name
         $schemaTable = explode(".", $table);
 
         if (count($schemaTable) > 1) {
@@ -749,7 +749,7 @@ class DB2Grammar extends Grammar
     }
 
     /**
-     * Get the SQL for an "for column" column modifier.
+     * Get the SQL for a "for column" column modifier.
      *
      * @param  \Illuminate\Database\Schema\Blueprint $blueprint
      * @param  \Illuminate\Support\Fluent            $column
