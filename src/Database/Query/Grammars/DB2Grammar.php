@@ -26,35 +26,51 @@ class DB2Grammar extends Grammar
     protected $offsetCompatibilityMode = true;
 
     /**
-     * Wrap a single string in keyword identifiers.
+     * Wrap a value in keyword identifiers.
      *
-     * @param string $value
-     *
+     * @param  \Illuminate\Database\Query\Expression|string  $value
+     * @param  bool  $prefixAlias
      * @return string
      */
-    protected function wrapValue(string $value): string
+    public function wrap($value, $prefixAlias = false)
     {
         if ($value === '*') {
             return $value;
         }
+        if ($this->isExpression($value)) {
+            return $this->getValue($value);
+        }
 
-        return str_replace('"', '""', $value);
+        // If the value being wrapped has a column alias we will need to separate out
+        // the pieces so we can wrap each of the segments of the expression on its
+        // own, and then join these both back together using the "as" connector.
+        if (stripos($value, ' as ') !== false) {
+            return $this->wrapAliasedValue($value, $prefixAlias);
+        }
+
+        // If the given value is a JSON selector we will wrap it differently than a
+        // traditional value. We will need to split this path and wrap each part
+        // wrapped, etc. Otherwise, we will simply wrap the value as a string.
+        if ($this->isJsonSelector($value)) {
+            return $this->wrapJsonSelector($value);
+        }
+
+        return $this->wrapSegments(explode('.', $value));
     }
 
     /**
      * Compile the "limit" portions of the query.
      *
-     * @param \Illuminate\Database\Query\Builder $query
-     * @param int                                $limit
-     *
+     * @param  \Illuminate\Database\Query\Builder  $query
+     * @param  int  $limit
      * @return string
      */
-    protected function compileLimit(Builder $query, int $limit): string
+    protected function compileLimit(Builder $query, $limit)
     {
         if ($this->offsetCompatibilityMode) {
             return "FETCH FIRST $limit ROWS ONLY";
         }
-        return parent::compileLimit($query, $limit);
+        return 'limit '.(int) $limit;
     }
 
     /**
@@ -189,17 +205,16 @@ class DB2Grammar extends Grammar
     /**
      * Compile the "offset" portions of the query.
      *
-     * @param \Illuminate\Database\Query\Builder $query
-     * @param int                                $offset
-     *
+     * @param  \Illuminate\Database\Query\Builder  $query
+     * @param  int  $offset
      * @return string
      */
-    protected function compileOffset(Builder $query, int $offset): string
+    protected function compileOffset(Builder $query, $offset)
     {
         if ($this->offsetCompatibilityMode) {
             return '';
         }
-        return parent::compileOffset($query, $offset);
+        return 'offset '.(int) $offset;
     }
 
     /**
