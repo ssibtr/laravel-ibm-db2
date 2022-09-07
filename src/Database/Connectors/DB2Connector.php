@@ -1,6 +1,6 @@
 <?php
 
-namespace GuidoFaecke\DB2\Database\Connectors;
+namespace SystemServices\DB2\Database\Connectors;
 
 use Exception;
 use Illuminate\Database\Connectors\Connector;
@@ -10,7 +10,7 @@ use PDO;
 /**
  * Class IBMConnector
  *
- * @package GuidoFaecke\DB2\Database\Connectors
+ * @package SystemServices\DB2\Database\Connectors
  */
 class DB2Connector extends Connector implements ConnectorInterface
 {

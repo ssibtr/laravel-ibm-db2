@@ -1,20 +1,20 @@
 <?php
 
-namespace GuidoFaecke\DB2\Database;
+namespace SystemServices\DB2\Database;
 
-use GuidoFaecke\DB2\Database\Query\Grammars\DB2Grammar as QueryGrammar;
-use GuidoFaecke\DB2\Database\Query\Processors\DB2Processor;
-use GuidoFaecke\DB2\Database\Query\Processors\DB2ZOSProcessor;
-use GuidoFaecke\DB2\Database\Schema\Builder;
-use GuidoFaecke\DB2\Database\Schema\Grammars\DB2ExpressCGrammar;
-use GuidoFaecke\DB2\Database\Schema\Grammars\DB2Grammar as SchemaGrammar;
+use SystemServices\DB2\Database\Query\Grammars\DB2Grammar as QueryGrammar;
+use SystemServices\DB2\Database\Query\Processors\DB2Processor;
+use SystemServices\DB2\Database\Query\Processors\DB2ZOSProcessor;
+use SystemServices\DB2\Database\Schema\Builder;
+use SystemServices\DB2\Database\Schema\Grammars\DB2ExpressCGrammar;
+use SystemServices\DB2\Database\Schema\Grammars\DB2Grammar as SchemaGrammar;
 use Illuminate\Database\Connection;
 use PDO;
 
 /**
  * Class DB2Connection
  *
- * @package GuidoFaecke\DB2\Database
+ * @package SystemServices\DB2\Database
  */
 class DB2Connection extends Connection
 {
@@ -84,7 +84,7 @@ class DB2Connection extends Connection
     /**
      * Get a schema builder instance for the connection.
      *
-     * @return \GuidoFaecke\DB2\Database\Schema\Builder
+     * @return \SystemServices\DB2\Database\Schema\Builder
      */
     public function getSchemaBuilder()
     {
@@ -135,7 +135,7 @@ class DB2Connection extends Connection
     /**
      * Get the default post processor instance.
      *
-     * @return \GuidoFaecke\DB2\Database\Query\Processors\DB2Processor|\GuidoFaecke\DB2\Database\Query\Processors\DB2ZOSProcessor
+     * @return \SystemServices\DB2\Database\Query\Processors\DB2Processor|\SystemServices\DB2\Database\Query\Processors\DB2ZOSProcessor
      */
     protected function getDefaultPostProcessor()
     {

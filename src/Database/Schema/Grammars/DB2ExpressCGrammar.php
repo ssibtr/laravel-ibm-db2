@@ -1,6 +1,6 @@
 <?php
 
-namespace GuidoFaecke\DB2\Database\Schema\Grammars;
+namespace SystemServices\DB2\Database\Schema\Grammars;
 
 class DB2ExpressCGrammar extends DB2Grammar
 {

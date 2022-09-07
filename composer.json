@@ -1,5 +1,5 @@
 {
-    "name": "guidofaecke/laravel-ibm-db2",
+    "name": "ssibtr/laravel-ibm-db2",
     "description": "laravel-ibm-db2 is a simple DB2 service provider for Laravel. It provides DB2 Connection by extending the Illuminate Database component of the laravel framework.",
     "keywords": [
         "laravel",
@@ -17,6 +17,10 @@
         {
             "name": "Guido Faecke",
             "role": "Developer"
+        },
+        {
+            "name": "Bee Vo",
+            "role": "Developer"
         }
     ],
     "config": {
@@ -32,13 +36,13 @@
     },
     "autoload": {
         "psr-4": {
-            "GuidoFaecke\\DB2\\": "src/"
+            "SystemServices\\DB2\\": "src/"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "GuidoFaecke\\DB2\\DB2ServiceProvider"
+                "SystemServices\\DB2\\DB2ServiceProvider"
             ]
         }
     }

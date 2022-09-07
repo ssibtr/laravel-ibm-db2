@@ -1,11 +1,11 @@
 <?php
 
-namespace GuidoFaecke\DB2\Database\Connectors;
+namespace SystemServices\DB2\Database\Connectors;
 
 /**
  * Class ODBCConnector
  *
- * @package GuidoFaecke\DB2\Database\Connectors
+ * @package SystemServices\DB2\Database\Connectors
  */
 class ODBCConnector extends DB2Connector
 {

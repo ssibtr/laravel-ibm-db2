@@ -1,6 +1,6 @@
 <?php
 
-namespace GuidoFaecke\DB2\Database\Schema\Grammars;
+namespace SystemServices\DB2\Database\Schema\Grammars;
 
 use Illuminate\Database\Connection;
 use Illuminate\Database\Query\Expression;

@@ -1,6 +1,6 @@
 <?php
 
-namespace GuidoFaecke\DB2\Queue;
+namespace SystemServices\DB2\Queue;
 
 use Illuminate\Queue\DatabaseQueue;
 

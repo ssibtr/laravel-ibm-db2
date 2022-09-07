@@ -1,6 +1,6 @@
 <?php
 
-namespace GuidoFaecke\DB2\Database\Schema;
+namespace SystemServices\DB2\Database\Schema;
 
 use Illuminate\Database\Connection;
 use Illuminate\Database\Schema\Grammars\Grammar;
@@ -8,7 +8,7 @@ use Illuminate\Database\Schema\Grammars\Grammar;
 /**
  * Class Blueprint
  *
- * @package GuidoFaecke\DB2\Database\Schema
+ * @package SystemServices\DB2\Database\Schema
  */
 class Blueprint extends \Illuminate\Database\Schema\Blueprint
 {

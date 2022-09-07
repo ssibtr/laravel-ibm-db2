@@ -1,15 +1,15 @@
 <?php
 
-namespace GuidoFaecke\DB2\Database\Query\Processors;
+namespace SystemServices\DB2\Database\Query\Processors;
 
-use GuidoFaecke\DB2\Database\Query\Grammars\DB2Grammar;
+use SystemServices\DB2\Database\Query\Grammars\DB2Grammar;
 use Illuminate\Database\Query\Builder;
 use Illuminate\Database\Query\Processors\Processor;
 
 /**
  * Class DB2ZOSProcessor
  *
- * @package GuidoFaecke\DB2\Database\Query\Processors
+ * @package SystemServices\DB2\Database\Query\Processors
  */
 class DB2ZOSProcessor extends Processor
 {

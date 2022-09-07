@@ -1,12 +1,12 @@
 <?php
 
-namespace GuidoFaecke\DB2;
+namespace SystemServices\DB2;
 
-use GuidoFaecke\DB2\Database\Connectors\IBMConnector;
-use GuidoFaecke\DB2\Database\Connectors\ODBCConnector;
-use GuidoFaecke\DB2\Database\Connectors\ODBCZOSConnector;
-use GuidoFaecke\DB2\Database\DB2Connection;
-use GuidoFaecke\DB2\Queue\DB2Connector;
+use SystemServices\DB2\Database\Connectors\IBMConnector;
+use SystemServices\DB2\Database\Connectors\ODBCConnector;
+use SystemServices\DB2\Database\Connectors\ODBCZOSConnector;
+use SystemServices\DB2\Database\DB2Connection;
+use SystemServices\DB2\Queue\DB2Connector;
 use Illuminate\Foundation\Application as LaravelApplication;
 use Illuminate\Queue\QueueManager;
 use Illuminate\Support\ServiceProvider;
@@ -15,7 +15,7 @@ use Laravel\Lumen\Application as LumenApplication;
 /**
  * Class DB2ServiceProvider
  *
- * @package GuidoFaecke\DB2\Database
+ * @package SystemServices\DB2\Database
  */
 class DB2ServiceProvider extends ServiceProvider
 {

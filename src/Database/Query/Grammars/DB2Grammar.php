@@ -1,6 +1,6 @@
 <?php
 
-namespace GuidoFaecke\DB2\Database\Query\Grammars;
+namespace SystemServices\DB2\Database\Query\Grammars;
 
 use Illuminate\Database\Query\Builder;
 use Illuminate\Database\Query\Grammars\Grammar;
@@ -8,7 +8,7 @@ use Illuminate\Database\Query\Grammars\Grammar;
 /**
  * Class DB2Grammar
  *
- * @package GuidoFaecke\DB2\Database\Query\Grammars
+ * @package SystemServices\DB2\Database\Query\Grammars
  */
 class DB2Grammar extends Grammar
 {
