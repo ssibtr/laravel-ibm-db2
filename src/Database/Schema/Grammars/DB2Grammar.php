@@ -17,10 +17,10 @@ class DB2Grammar extends Grammar
      *
      * @var array
      */
-    protected $preModifiers = ['ForColumn'];
+    protected array $preModifiers = ['ForColumn'];
 
     /** @var string[] */
-    protected $modifiers = [
+    protected array $modifiers = [
         'Nullable',
         'Default',
         'Generated',
@@ -34,7 +34,7 @@ class DB2Grammar extends Grammar
      *
      * @var array
      */
-    protected $serials = [
+    protected array $serials = [
         'smallInteger',
         'integer',
         'bigInteger',
@@ -47,7 +47,7 @@ class DB2Grammar extends Grammar
      *
      * @return string
      */
-    protected function wrapValue($value): string
+    protected function wrapValue(string $value): string
     {
         if ($value === '*') {
             return $value;
